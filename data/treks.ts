@@ -1,0 +1,581 @@
+/**
+ * Treks — four walking journeys from the Druk Path to the Snowman.
+ * Each is a complete journey (arrival, acclimatisation, trek, departure); daysCount is the
+ * number of walking days. Camp nights carry no stay slug. Prices are base USD, per person
+ * sharing, all-in (SDF and visa fee included). Stay names are placeholders.
+ */
+import type { Trek, BudgetTier } from "./types";
+import { img } from "./images";
+
+const VERIFY = "Verify against https://www.bhutan.travel before launch.";
+
+const trekInclusions = (extra: string[] = []): string[] => [
+  `Sustainable Development Fee (SDF) for every night in Bhutan, including camp nights; the fee funds free healthcare, education and conservation and is what keeps the trails as empty as they are. ${VERIFY}`,
+  `Bhutan visa fee and visa processing, arranged by our licensed Bhutanese partner operator. ${VERIFY}`,
+  `Licensed trekking guide throughout. A licensed trekking guide and support team are required by regulation for every trek in Bhutan; this is not optional and we would not want it to be. ${VERIFY}`,
+  "Trek cook and kitchen crew, serving three hot meals a day and tea at every pause.",
+  "Horsemen and pack animals (horses or yaks at altitude) to carry camp, kitchen and your duffel; you walk with a daysack.",
+  "Camping equipment: sleeping tent, dining tent, kitchen tent, toilet tent, foam mattress and camp chairs; sleeping bags on request.",
+  "Private driver and private vehicle for every road day, including transfers to the trailhead and from the trail's end.",
+  "All meals in Bhutan, on the trail and off it.",
+  "All monument, museum and dzong entry fees on the non-trekking days.",
+  "Accommodation in Paro and at the trail's end as described.",
+  "Airport transfers in Paro.",
+  "Your dedicated Dzong House specialist, from the first message to the day you fly home.",
+  ...extra,
+];
+
+const trekExclusions = (extra: string[] = []): string[] => [
+  "International flights to and from Paro (we book them for you at cost; Paro is Bhutan's only international airport).",
+  "Travel insurance with high-altitude trekking and helicopter evacuation cover, which we require for every trekker.",
+  "Alcoholic and soft drinks beyond water, tea and coffee at meals.",
+  "Tips for your guide, cook, horsemen and lodge staff (we will suggest a range).",
+  "Personal trekking gear, boots and clothing; a kit list follows your booking.",
+  "Personal items, laundry and anything of a purely personal nature.",
+  ...extra,
+];
+
+const tiers = (
+  comfort: number,
+  premium: number,
+  ultra: number,
+  lines: Partial<Record<BudgetTier, string>> = {},
+): Trek["pricing"] => [
+  {
+    tier: "comfort",
+    label: "Comfort",
+    perPersonUSD: comfort,
+    note: `${lines.comfort ?? "Full-service camping with licensed trekking guide, cook and crew; warm three-star hotels before and after."} SDF and visa fee included.`,
+  },
+  {
+    tier: "premium",
+    label: "Premium",
+    perPersonUSD: premium,
+    note: `${lines.premium ?? "Larger standing-height tents, thicker mattresses, hot washing water and a dedicated camp host; boutique hotels before and after."} SDF and visa fee included.`,
+  },
+  {
+    tier: "ultra",
+    label: "Ultra luxury",
+    perPersonUSD: ultra,
+    note: `${lines.ultra ?? "A private camp with heated dining tent, camp shower and a chef; the finest lodges before and after, helicopter transfers where useful."} SDF and visa fee included.`,
+  },
+];
+
+export const treks: Trek[] = [
+  // ---------------------------------------------------------------------------
+  {
+    slug: "druk-path-trek",
+    name: "Druk Path trek",
+    kind: "trek",
+    regions: ["western"],
+    destinations: ["paro", "thimphu"],
+    nights: 7,
+    daysCount: 5,
+    maxAltitudeM: 4200,
+    difficulty: "Moderate",
+    budgetTier: "comfort",
+    priceFromUSD: 3050,
+    sdfIncluded: true,
+    visaIncluded: true,
+    tagline: "Paro to Thimphu the old way, over the ridge and past the lakes.",
+    summary:
+      "The Druk Path follows the ancient route between the Paro and Thimphu valleys along a high ridge of rhododendron, juniper and small alpine lakes. Five days of walking with camps between 3,500 and 4,100 m, a ruined dzong, yak pastures and, on a clear morning from Phume La, Jomolhari and Gangkar Puensum. It is the kingdom's most approachable trek and a fine introduction to walking at altitude.",
+    bestMonths: ["March", "April", "May", "September", "October", "November"],
+    fitnessAdvice: [
+      "Expect four to six hours of walking a day with 500 to 800 m of ascent on the longer days; a good level of hill-walking fitness is enough.",
+      "The trek reaches 4,200 m at Phume La; two nights in Paro beforehand are built in to let your body adjust.",
+      "Walk regularly for two months before departure, ideally with a daysack and on uneven ground, and break in your boots.",
+      "Days can be wet in the shoulder months and cold at the lake camps; good waterproofs and a warm layer matter more than speed.",
+      "Tell us about any heart, lung or altitude history at booking so our guide can plan the pace around you.",
+    ],
+    campsOrLodges:
+      "Four nights in full-service camps at Jele Dzong, Jangchulakha, Jimilang Tsho and Simkotra Tsho, each with sleeping, dining and toilet tents set by the crew before you arrive. The nights before and after are in a lodge in Paro and a boutique house in Thimphu.",
+    days: [
+      {
+        day: 1,
+        title: "Arrive in Paro",
+        body: "Your guide meets the aircraft and the lodge is twenty minutes away. A walk along the river and an early night at 2,200 m to begin the acclimatisation.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 2,
+        title: "Paro and the Tiger's Nest",
+        body: "The climb to Taktsang is the best acclimatisation walk in the country, three hours up to 3,100 m and back by lunch. The afternoon is for Rinpung Dzong, a gear check with your trekking guide and meeting the crew.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 3,
+        title: "Trek day 1: Ta Dzong to Jele Dzong",
+        body: "The trail leaves from above the National Museum and climbs steadily through blue pine and apple orchards to a ridge camp just below the ruined Jele Dzong at about 3,480 m. Four hours, most of it uphill, with the Paro valley opening behind you. The dzong's small temple is still tended by a single caretaker.",
+        destination: "paro",
+      },
+      {
+        day: 4,
+        title: "Trek day 2: Jele Dzong to Jangchulakha",
+        body: "A gentler day along the ridge through thick rhododendron that flowers red and pink in April. Yak herders' huts appear in the pastures and the camp at Jangchulakha sits at about 3,770 m with Jomolhari sometimes visible to the north. Four hours of walking.",
+        destination: "paro",
+      },
+      {
+        day: 5,
+        title: "Trek day 3: Jangchulakha to Jimilang Tsho",
+        body: "The path crosses rocky ridges and dips into a bowl holding Jimilang Tsho, the sapphire lake, famous for its giant trout and its stillness. Camp beside the water at about 3,870 m, with the evening cold and very clear.",
+        destination: "paro",
+      },
+      {
+        day: 6,
+        title: "Trek day 4: Jimilang Tsho to Simkotra Tsho",
+        body: "Past the small lake of Janetso and along a high trail with dwarf rhododendron and yak pasture on either side. The camp is at Simkotra Tsho at about 4,110 m, the highest night of the trek, beside ruined stone shelters and a lake that catches the last light.",
+        destination: "thimphu",
+      },
+      {
+        day: 7,
+        title: "Trek day 5: Phume La to Thimphu",
+        body: "A short climb to Phume La at about 4,200 m, where on a clear morning the view runs from Jomolhari to Gangkar Puensum, then the long descent through Phajoding monastery and its hermitages to the top of Thimphu. Your driver waits at Motithang; a hot shower and a boutique house follow.",
+        stay: "thimphu-boutique-house",
+        destination: "thimphu",
+      },
+      {
+        day: 8,
+        title: "Thimphu to Paro, depart",
+        body: "A morning at the Buddha Dordenma and the Memorial Chorten if time allows, then the hour's drive to the airport. Your guide waits until you are through the doors.",
+        destination: "paro",
+      },
+    ],
+    inclusions: trekInclusions(),
+    exclusions: trekExclusions(),
+    pricing: tiers(3050, 5200, 9800),
+    stays: ["paro-valley-lodge", "thimphu-boutique-house"],
+    hero: img("alpineLake", "A still alpine lake on the Druk Path ridge between Paro and Thimphu"),
+    card: img("forestPath", "The pine forest trail climbing out of the Paro valley"),
+  },
+
+  // ---------------------------------------------------------------------------
+  {
+    slug: "jomolhari-trek",
+    name: "Jomolhari trek",
+    kind: "trek",
+    regions: ["western"],
+    destinations: ["paro", "thimphu"],
+    nights: 10,
+    daysCount: 8,
+    maxAltitudeM: 4930,
+    difficulty: "Challenging",
+    budgetTier: "comfort",
+    priceFromUSD: 4200,
+    sdfIncluded: true,
+    visaIncluded: true,
+    tagline: "To the foot of the sacred mountain, and over two high passes to Thimphu.",
+    summary:
+      "Jomolhari rises to 7,326 m on the Tibetan border, and the camp at Jangothang sits beneath its north-east face with the mountain filling the sky. This is the classic route: up the Paro Chhu to the base camp, a rest day among the yak herders and blue sheep, then over Nyile La and Yeli La, the latter at 4,930 m, and down through Lingshi and the Thimphu valley's wild upper reaches. Eight days of walking, properly remote.",
+    bestMonths: ["April", "May", "September", "October"],
+    fitnessAdvice: [
+      "Six to eight hours of walking most days, with two passes close to 5,000 m; you should be comfortable with long hill days carrying a daysack.",
+      "The rest day at Jangothang (4,080 m) is for acclimatisation and is not optional; the passes that follow depend on it.",
+      "Train for three months before departure with back-to-back long walks, including some at whatever altitude you can reach.",
+      "Nights at the high camps drop well below freezing in spring and autumn; a four-season sleeping bag and down jacket are essential.",
+      "Our guide carries a pulse oximeter and a first aid kit and will turn the group around if altitude sickness appears; helicopter evacuation insurance is required.",
+    ],
+    campsOrLodges:
+      "Seven camp nights at Thangthangka, Jangothang (two nights), Lingshi, Shodu, Barshong and Dolam Kencho, with full dining, kitchen and toilet tents and a crew that is always ahead of you. Two lodge nights in Paro before the trek and one in a boutique house in Thimphu after it.",
+    days: [
+      {
+        day: 1,
+        title: "Arrive in Paro",
+        body: "Met at the aircraft steps and settled in a lodge above the valley. A walk to Kyichu Lhakhang in the afternoon and an early night at 2,200 m.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 2,
+        title: "Acclimatisation: the Tiger's Nest",
+        body: "The climb to Taktsang at 3,100 m is the perfect first altitude day, back in time for lunch. The afternoon brings a gear check with your trekking guide and the first sight of the crew and horses.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 3,
+        title: "Trek day 1: Shana to Thangthangka",
+        body: "A drive up the Paro valley past Drukgyel Dzong to the army post at Gunitsawa, where the trail begins beside the Paro Chhu. The path climbs through oak and then conifer forest, crossing the river on wooden bridges, to a meadow camp at about 3,610 m. Six to seven hours, and the first cold night.",
+        destination: "paro",
+      },
+      {
+        day: 4,
+        title: "Trek day 2: Thangthangka to Jangothang",
+        body: "The forest thins and the valley opens into yak pasture with stone herders' houses and the first view of Jomolhari ahead. Camp at Jangothang, about 4,080 m, beneath the ruins of a small fortress and the full north-east face of the mountain. Five hours, with the breath noticeably shorter.",
+        destination: "paro",
+      },
+      {
+        day: 5,
+        title: "Trek day 3: rest day at Jangothang",
+        body: "A day for the body to catch up with the altitude, spent on a gentle walk up to the twin lakes of Tshophu at 4,380 m, where blue sheep graze the slopes and the mountain stands over everything. Back for lunch and an afternoon of reading, tea and watching the light move on Jomolhari.",
+        destination: "paro",
+      },
+      {
+        day: 6,
+        title: "Trek day 4: Jangothang to Lingshi over Nyile La",
+        body: "The long climb to Nyile La at about 4,870 m, with Jomolhari and Jichu Drake behind and the Lingshi valley ahead. The descent is gradual to a camp below Lingshi Dzong, perched on its hill at about 4,010 m. Seven to eight hours, the hardest day so far.",
+        destination: "thimphu",
+      },
+      {
+        day: 7,
+        title: "Trek day 5: Lingshi to Shodu over Yeli La",
+        body: "A morning visit to the small white dzong, then the climb to Yeli La at about 4,930 m, the highest point of the trek, with a last view of the border peaks. The trail drops steeply along the Jaradinthang Chhu to a camp at Shodu at about 4,080 m. Eight hours, and the sense of having crossed something.",
+        destination: "thimphu",
+      },
+      {
+        day: 8,
+        title: "Trek day 6: Shodu to Barshong",
+        body: "The river carves a gorge and the path follows it down through rhododendron and bamboo, past meditation caves and a waterfall, to the ruined dzong at Barshong at about 3,710 m. Five to six hours, with the forest returning around you.",
+        destination: "thimphu",
+      },
+      {
+        day: 9,
+        title: "Trek day 7: Barshong to Dolam Kencho",
+        body: "A day of ups and downs along the Thimphu Chhu, through dense forest with the river loud below. Camp in a clearing at Dolam Kencho at about 3,290 m, the last night under canvas.",
+        destination: "thimphu",
+      },
+      {
+        day: 10,
+        title: "Trek day 8: Dolam Kencho to Dodena, drive to Thimphu",
+        body: "A final morning down to the road at Dodena, with the monastery of Cheri on its hill across the river and the first farmhouses of the valley. Your driver waits with the vehicle, and a hot shower in Thimphu is half an hour away.",
+        stay: "thimphu-boutique-house",
+        destination: "thimphu",
+      },
+      {
+        day: 11,
+        title: "Thimphu to Paro, depart",
+        body: "A quiet morning in the capital, the Buddha Dordenma if time allows, then the drive to the airport. Your guide waits until you are through the doors.",
+        destination: "paro",
+      },
+    ],
+    inclusions: trekInclusions(),
+    exclusions: trekExclusions(),
+    pricing: tiers(4200, 7000, 13000),
+    stays: ["paro-valley-lodge", "thimphu-boutique-house"],
+    hero: img("pinkPeaks", "Alpenglow on Jomolhari, seen from the camp at Jangothang"),
+    card: img("hikerRidge", "A trekker on a high ridge near Nyile La"),
+  },
+
+  // ---------------------------------------------------------------------------
+  {
+    slug: "bumthang-cultural-trek",
+    name: "Bumthang cultural trek",
+    kind: "trek",
+    regions: ["western", "central"],
+    destinations: ["paro", "bumthang"],
+    nights: 7,
+    daysCount: 3,
+    maxAltitudeM: 3400,
+    difficulty: "Moderate",
+    budgetTier: "comfort",
+    priceFromUSD: 3200,
+    sdfIncluded: true,
+    visaIncluded: true,
+    tagline: "Three days on foot between the temples and villages of the heartland.",
+    summary:
+      "The gentlest of Bhutan's treks, and perhaps the richest in people. The trail runs from the Choekhor valley up the Chamkhar Chhu to the Swan Temple at Ngang Lhakhang, over the wooded Phephe La at about 3,400 m and down into the Tang valley, through villages where the lunch stop is a farmhouse kitchen and the evening is a temple courtyard. It suits families, first-time trekkers and anyone who prefers monasteries to passes.",
+    bestMonths: ["March", "April", "May", "September", "October", "November"],
+    fitnessAdvice: [
+      "Four to six hours of walking a day on good paths through forest and farmland, with one pass of about 3,400 m; comfortable for anyone used to a long day's walk.",
+      "Bumthang sits at 2,800 m, so the day among the temples before the trek doubles as acclimatisation.",
+      "A few weeks of regular walking before departure is enough; bring broken-in boots and a light waterproof.",
+      "Children from about ten who enjoy walking do well on this route; ask us about pony riding on the longer stretches.",
+      "Autumn mornings are frosty and spring afternoons can bring showers; layers rather than heavy gear.",
+    ],
+    campsOrLodges:
+      "Two full-service camp nights, one in the meadow below Ngang Lhakhang and one at Tahung in the Tang valley, with sleeping, dining and toilet tents set by the crew. The nights before and after are in a heritage farmhouse in Bumthang and a lodge in Paro.",
+    days: [
+      {
+        day: 1,
+        title: "Arrive in Paro",
+        body: "Met at the aircraft steps and settled in a lodge above the valley. Kyichu Lhakhang in the afternoon and an early night at 2,200 m.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 2,
+        title: "Fly to Bumthang",
+        body: "The domestic flight from Paro follows the peaks east for half an hour and lands among the buckwheat fields of Jakar; when the schedule does not allow, the journey becomes a two-day drive with a night in Punakha and we add a day. A farmhouse welcome, and a first evening walk along the Chamkhar Chhu at 2,800 m.",
+        stay: "bumthang-heritage-farmhouse",
+        destination: "bumthang",
+      },
+      {
+        day: 3,
+        title: "The temples of Choekhor",
+        body: "Jambay Lhakhang from the seventh century, Kurjey where Guru Rinpoche meditated, Tamshing with its ancient murals and the fortress of Jakar Dzong above the town. An easy day on the feet and a gear check with your trekking guide in the evening.",
+        stay: "bumthang-heritage-farmhouse",
+        destination: "bumthang",
+      },
+      {
+        day: 4,
+        title: "Trek day 1: Toktu Zampa to Ngang Lhakhang",
+        body: "The trail begins at the bridge of Toktu Zampa and follows the river north through meadows and villages, past Thangbi Lhakhang and its festival ground. Camp in the meadow below Ngang Lhakhang, the Swan Temple, at about 2,800 m, with a visit to its courtyard in the evening light. Five hours of gentle walking.",
+        destination: "bumthang",
+      },
+      {
+        day: 5,
+        title: "Trek day 2: Ngang Lhakhang to Tahung over Phephe La",
+        body: "The one climb of the trek, through hemlock and rhododendron to Phephe La at about 3,400 m, where prayer flags mark the pass and the Tang valley opens below. A long descent through forest to the village of Tahung and a camp by the river. Six hours, the longest day.",
+        destination: "bumthang",
+      },
+      {
+        day: 6,
+        title: "Trek day 3: Tahung to Mesithang, and Ogyen Choling",
+        body: "A morning's walk down the Tang valley through villages and barley fields to the road at Mesithang. The afternoon belongs to the manor of Ogyen Choling and its family museum, then the burning lake of Membartsho on the way back to the farmhouse in Jakar.",
+        stay: "bumthang-heritage-farmhouse",
+        destination: "bumthang",
+      },
+      {
+        day: 7,
+        title: "Fly to Paro",
+        body: "The morning flight west along the Himalaya, with Jomolhari ahead as you descend, and an afternoon in Paro for Rinpung Dzong, the covered bridge and a hot stone bath.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 8,
+        title: "Depart Paro",
+        body: "Breakfast with the valley below, the short drive to the airport and farewells with your guide.",
+        destination: "paro",
+      },
+    ],
+    inclusions: trekInclusions([
+      "Domestic flights Paro to Bumthang and back when they operate, otherwise the drive with additional nights in Punakha.",
+    ]),
+    exclusions: trekExclusions(),
+    pricing: tiers(3200, 5500, 10500),
+    stays: ["paro-valley-lodge", "bumthang-heritage-farmhouse"],
+    hero: img("valleyForest", "A forested valley in Bumthang with snow on the ridges beyond"),
+    card: img("hikersGroup", "A family of walkers reading the map on the Bumthang cultural trek"),
+  },
+
+  // ---------------------------------------------------------------------------
+  {
+    slug: "snowman-trek",
+    name: "Snowman trek",
+    kind: "trek",
+    regions: ["western", "eastern", "central"],
+    destinations: ["paro", "thimphu", "laya", "lunana", "wangdue-phodrang", "trongsa"],
+    nights: 28,
+    daysCount: 25,
+    maxAltitudeM: 5320,
+    difficulty: "Extreme",
+    budgetTier: "comfort",
+    priceFromUSD: 11900,
+    sdfIncluded: true,
+    visaIncluded: true,
+    tagline: "Twenty-five days through Laya and Lunana, the hardest walk in the Himalaya.",
+    summary:
+      "The Snowman crosses eleven passes above 4,500 m on its way from Paro to the Lunana valleys and out to Sephu, through country that sees fewer visitors in a year than the Tiger's Nest sees in a morning. It is called the hardest trek in the Himalaya for the altitude, the length and the weather, which closes the passes with snow from late October. Laya's women in their conical bamboo hats, the glacial lakes of Thanza, the yak trains at Rinchen Zoe La: this is the kingdom as it was.",
+    bestMonths: ["September", "October"],
+    fitnessAdvice: [
+      "Twenty-five consecutive days of walking, many of six to nine hours, with eleven passes between 4,500 and 5,320 m and most nights above 4,000 m; this is an expedition, not a holiday.",
+      "You need a strong history of multi-week trekking at altitude and should be comfortable with cold, wet and long days without rest.",
+      "Train for at least six months with long back-to-back mountain days under load, and tell us honestly about every previous altitude experience.",
+      "Weather is the main reason Snowman treks fail; snow can close the passes in any month, and the itinerary carries contingency days our guide may use without notice.",
+      "Helicopter evacuation insurance is required, and our guide carries a satellite phone, oxygen and a full medical kit; a doctor's letter is requested at booking.",
+    ],
+    campsOrLodges:
+      "Twenty-four camp nights across the full route, with full dining, kitchen and toilet tents and a crew of horsemen and, above Laya, yak herders who move camp ahead of you each day. Village camps at Laya and Thanza allow a visit to a home and a washing day. Lodge nights in Paro before and after, and a boutique hotel in Trongsa at the trail's end.",
+    days: [
+      {
+        day: 1,
+        title: "Arrive in Paro",
+        body: "Met at the aircraft steps and settled in a lodge above the valley. A walk along the river and an early night at 2,200 m, the first of many.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 2,
+        title: "Acclimatisation: the Tiger's Nest and a full gear check",
+        body: "The climb to Taktsang at 3,100 m in the morning, back for lunch. The afternoon is a careful gear check with your trekking guide, a briefing on the route and the weather, and the first meeting with the crew.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 3,
+        title: "Trek day 1: Shana to Thangthangka",
+        body: "A drive past Drukgyel Dzong to the trailhead at Gunitsawa, then the Paro Chhu through oak and conifer forest to a meadow camp at about 3,610 m. Six to seven hours, with the river for company.",
+        destination: "paro",
+      },
+      {
+        day: 4,
+        title: "Trek day 2: Thangthangka to Jangothang",
+        body: "The valley opens into yak pasture and Jomolhari appears ahead and grows all afternoon. Camp at about 4,080 m beneath the mountain's north-east face. Five hours.",
+        destination: "paro",
+      },
+      {
+        day: 5,
+        title: "Trek day 3: rest day at Jangothang",
+        body: "A walk to the lakes of Tshophu at 4,380 m among blue sheep, and an afternoon of rest beneath the mountain. The body needs this day before the passes begin.",
+        destination: "paro",
+      },
+      {
+        day: 6,
+        title: "Trek day 4: Jangothang to Lingshi over Nyile La",
+        body: "The climb to Nyile La at about 4,870 m with Jomolhari and Jichu Drake behind, then down to camp below the white dzong of Lingshi at about 4,010 m. Seven to eight hours.",
+        destination: "thimphu",
+      },
+      {
+        day: 7,
+        title: "Trek day 5: rest day at Lingshi",
+        body: "A visit to Lingshi Dzong on its hill and to the village beneath it, where the medicinal herbs for the Thimphu hospital are gathered. An easy day to settle at altitude before the long traverse north.",
+        destination: "thimphu",
+      },
+      {
+        day: 8,
+        title: "Trek day 6: Lingshi to Chebisa",
+        body: "A short and beautiful day along a high valley to the village of Chebisa, a cluster of stone houses beneath a waterfall at about 3,880 m. Time in the afternoon to visit a home and watch the yaks come down.",
+        destination: "thimphu",
+      },
+      {
+        day: 9,
+        title: "Trek day 7: Chebisa to Shomuthang over Gogu La",
+        body: "A steep climb to Gogu La at about 4,440 m, then a traverse through rhododendron and across a side valley to camp at Shomuthang at about 4,220 m. Six to seven hours, with blue sheep on the slopes and the chance of a takin.",
+        destination: "laya",
+      },
+      {
+        day: 10,
+        title: "Trek day 8: Shomuthang to Robluthang over Jhari La",
+        body: "Over Jhari La at about 4,750 m with the first view of Sinche La ahead and Gangchhenta, the Great Tiger Mountain, to the north. Down to the river and up again to camp at Robluthang at about 4,160 m. Seven hours.",
+        destination: "laya",
+      },
+      {
+        day: 11,
+        title: "Trek day 9: Robluthang to Limithang over Sinche La",
+        body: "The long climb to Sinche La at about 5,005 m, the first of the five-thousand-metre passes, then a descent beneath the moraine and the hanging glaciers of Gangchhenta to a meadow camp at Limithang at about 4,140 m. Seven to eight hours.",
+        destination: "laya",
+      },
+      {
+        day: 12,
+        title: "Trek day 10: Limithang to Laya",
+        body: "A gentle day down the river through forest to Laya at about 3,800 m, the highest village of its size in Bhutan, where the women wear conical bamboo hats and the houses are stone with carved windows. Camp at the edge of the village, with the evening in a Layap home.",
+        destination: "laya",
+      },
+      {
+        day: 13,
+        title: "Trek day 11: rest day at Laya",
+        body: "A washing day, a resupply day and a day among the Layaps, whose yaks and cordyceps have made this one of the wealthiest villages in the mountains. The crew exchanges horses for yaks here for the high country ahead.",
+        destination: "laya",
+      },
+      {
+        day: 14,
+        title: "Trek day 12: Laya to Rodophu",
+        body: "Down to the Mo Chhu and then a long climb through forest and across a high meadow to the camp at Rodophu at about 4,160 m. Six to seven hours, and the last trees you will see for a fortnight.",
+        destination: "laya",
+      },
+      {
+        day: 15,
+        title: "Trek day 13: Rodophu to Narethang over Tsomo La",
+        body: "A climb to Tsomo La at about 4,900 m, with the Tibetan border peaks along the horizon and Jomolhari far to the west, then a short descent across a bare plateau to camp at Narethang at about 4,900 m. Five to six hours, and a very cold night.",
+        destination: "laya",
+      },
+      {
+        day: 16,
+        title: "Trek day 14: Narethang to Tarina over Gangla Karchung La",
+        body: "Over Gangla Karchung La at about 5,120 m, where the whole of Lunana opens below in a wall of glaciers and the peaks of Teri Gang and Jejekangphu Gang, then a long steep descent into the Tarina valley to camp at about 3,980 m. Seven to eight hours, the day most trekkers remember.",
+        destination: "lunana",
+      },
+      {
+        day: 17,
+        title: "Trek day 15: Tarina to Woche",
+        body: "A walk down the Tang Chhu beneath waterfalls, then a climb to Woche, the first village of Lunana, at about 3,910 m. Five hours, with the strange rock-and-timber houses of the valley appearing on the slopes.",
+        destination: "lunana",
+      },
+      {
+        day: 18,
+        title: "Trek day 16: Woche to Lhedi over Keche La",
+        body: "Over Keche La at about 4,650 m with glaciers on every side, then down to the Pho Chhu and along the river to the village of Lhedi at about 3,700 m, which has a school, a health post and a small shop that is the only one for a week in any direction. Six to seven hours.",
+        destination: "lunana",
+      },
+      {
+        day: 19,
+        title: "Trek day 17: Lhedi to Thanza",
+        body: "A gentle day up the valley past the village of Chozo and its small dzong to Thanza at about 4,090 m, beneath the great wall of Zongophu Gang, the Table Mountain. The glacial lake of Raphstreng Tsho lies above the village, the water held behind its moraine. Five hours.",
+        destination: "lunana",
+      },
+      {
+        day: 20,
+        title: "Trek day 18: rest day at Thanza",
+        body: "A day in the last village of Lunana: a walk to the glacial lakes, time in a home, a chance to wash, and a change of yaks for the long stage out. The crew watches the sky, because the passes ahead are the ones that close.",
+        destination: "lunana",
+      },
+      {
+        day: 21,
+        title: "Trek day 19: Thanza to Danji",
+        body: "A short day up a side valley with yak herders' camps and views back to Zongophu Gang, to camp at Danji at about 4,400 m. Three to four hours, deliberately easy before the highest passes.",
+        destination: "lunana",
+      },
+      {
+        day: 22,
+        title: "Trek day 20: Danji to Tshochena over Jaze La",
+        body: "Over Jaze La at about 5,150 m, with snow peaks in every direction, and down past a chain of small lakes to camp at Tshochena at about 4,970 m, beside a lake that mirrors the peaks. Six hours.",
+        destination: "lunana",
+      },
+      {
+        day: 23,
+        title: "Trek day 21: Tshochena to Jichu Dramo over Loju La",
+        body: "Over Loju La at about 4,940 m through a landscape of moraine and lake, then down to a camp at Jichu Dramo at about 5,050 m, among the highest camps in the country. Five hours, and a night where the stars are very close.",
+        destination: "lunana",
+      },
+      {
+        day: 24,
+        title: "Trek day 22: Jichu Dramo to Chukarpo over Rinchen Zoe La",
+        body: "The highest point of the trek: Rinchen Zoe La at about 5,320 m, with Gangkar Puensum, the highest unclimbed mountain in the world, to the east. A long descent beside a chain of lakes and the first dwarf rhododendron in two weeks, to camp at Chukarpo at about 4,600 m. Seven hours.",
+        destination: "wangdue-phodrang",
+      },
+      {
+        day: 25,
+        title: "Trek day 23: Chukarpo to Thampe Tsho",
+        body: "Down the valley through yak pasture and then a steep climb to the lake of Thampe Tsho at about 4,300 m, held in a bowl of cliffs. Five to six hours, with the forest returning below.",
+        destination: "wangdue-phodrang",
+      },
+      {
+        day: 26,
+        title: "Trek day 24: Thampe Tsho to Maurothang over Thampe La",
+        body: "The last pass, Thampe La at about 4,600 m, then a long descent past the lake of Om Tsho, where the treasure-finder Pema Lingpa is said to have found relics, down through forest to a camp among the first trees at Maurothang at about 3,610 m. Five to six hours.",
+        destination: "wangdue-phodrang",
+      },
+      {
+        day: 27,
+        title: "Trek day 25: Maurothang to Sephu, drive to Trongsa",
+        body: "A final morning down the Nikka Chhu through bamboo and farmland to the road at Sephu, where the vehicle waits and the crew is thanked. The drive east over Pele La to Trongsa, a hot shower and a bed with a view of the dzong across the gorge.",
+        stay: "trongsa-hillside-hotel",
+        destination: "trongsa",
+      },
+      {
+        day: 28,
+        title: "Trongsa to Paro",
+        body: "A morning at Trongsa Dzong, the seat of the royal family, then the long drive west over Pele La and Dochula with lunch in Punakha, arriving in Paro for the evening. A hot stone bath and the first proper dinner in a month.",
+        stay: "paro-valley-lodge",
+        destination: "paro",
+      },
+      {
+        day: 29,
+        title: "Depart Paro",
+        body: "Breakfast with the valley below, the short drive to the airport and farewells with a guide who has walked every step with you.",
+        destination: "paro",
+      },
+    ],
+    inclusions: trekInclusions([
+      "Yaks and yak herders above Laya, where horses cannot go, and a resupply at Laya and Thanza.",
+      "Satellite phone, oxygen and a full expedition medical kit carried by the guide.",
+      "Contingency days held in the schedule for weather on the Lunana passes.",
+    ]),
+    exclusions: trekExclusions([
+      "Helicopter evacuation or an unscheduled helicopter exit from Lunana, covered by your insurance.",
+    ]),
+    pricing: tiers(11900, 17500, 29000, {
+      comfort: "Full expedition camping with licensed trekking guide, cook, horsemen and yak crew; warm hotels before and after.",
+      premium: "Larger standing-height tents, thicker mattresses, hot washing water and a dedicated camp host; boutique hotels before and after.",
+      ultra: "A private expedition with heated dining tent, camp shower, a chef and a doctor; the finest lodges before and after, helicopter out from Lunana where useful.",
+    }),
+    stays: ["paro-valley-lodge", "trongsa-hillside-hotel"],
+    hero: img("starryPeaks", "Stars over snow peaks at a high camp in Lunana on the Snowman trek"),
+    card: img("peaksAboveClouds", "The Lunana peaks above cloud from Gangla Karchung La"),
+  },
+];
+
+export const getTrek = (slug: string) => treks.find((t) => t.slug === slug);
