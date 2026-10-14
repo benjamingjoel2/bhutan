@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { TextLink } from "./Button";
 
 export function Eyebrow({ children, className, light }: { children: ReactNode; className?: string; light?: boolean }) {
-  return <p className={cn("eyebrow", light && "text-saffron", className)}>{children}</p>;
+  return <p className={cn("eyebrow", light && "text-saffron-light", className)}>{children}</p>;
 }
 
 export function SectionHeader({

@@ -30,6 +30,12 @@ export const site = {
   ],
 } as const;
 
+/** Hero media. Leave the paths empty until real footage exists; the poster image shows instead. */
+export const media = {
+  heroLoop: "", // e.g. "/video/hero.mp4" — short muted loop, dawn over a dzong
+  heroFull: "", // e.g. "/video/hero-full.mp4" or an embed URL for "Play full video"
+} as const;
+
 export const whatsappHref = `https://wa.me/${site.contact.whatsappNumber.replace(/[^0-9]/g, "")}`;
 
 /** Brand palette — mirrored as CSS variables in app/globals.css */
@@ -41,6 +47,7 @@ export const colors = {
   maroon: "#6B1F2A",
   maroonDeep: "#4E141C",
   saffron: "#D99A2B",
+  saffronLight: "#E8B860",
   pine: "#2F4A3B",
   pineDeep: "#1F3328",
 } as const;
