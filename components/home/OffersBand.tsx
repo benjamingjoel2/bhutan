@@ -18,7 +18,7 @@ export function OffersBand() {
                   <Image src={o.image.src} alt={o.image.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
                   <span className="absolute left-4 top-4 bg-saffron px-3 py-1 text-[0.625rem] uppercase tracking-[0.18em] text-ink">Placeholder offer</span>
                 </div>
-                <p className="eyebrow mt-5 mb-1 text-saffron">{o.kind === "stay-longer" ? "Stay longer" : "Seasonal"}</p>
+                <p className="eyebrow mt-5 mb-1 text-saffron-light">{o.kind === "stay-longer" ? "Stay longer" : "Seasonal"}</p>
                 <h3 className="display-sm text-white">{o.name}</h3>
                 <p className="mt-2 text-[0.9375rem] text-white/75">{o.tagline}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-[0.6875rem] uppercase tracking-[0.18em] font-medium link-underline">View offer <Arrow /></span>

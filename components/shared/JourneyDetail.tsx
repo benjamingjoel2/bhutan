@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Journey, Trek } from "@/data/types";
 import { regionLabels } from "@/data/types";
@@ -105,7 +104,7 @@ export function JourneyDetail({ j, trek }: { j: Journey | Trek; trek?: Trek }) {
                   body: (
                     <div>
                       <p>{d.body}</p>
-                      {stay && <p className="mt-3 text-[0.875rem] text-ink-mute">Stay: <Link href={`/stays/${stay.slug}`} className="underline underline-offset-4">{stay.name}</Link> <span className="text-saffron">· placeholder name</span></p>}
+                      {stay && <p className="mt-3 text-[0.875rem] text-ink-mute">Stay: <Link href={`/stays/${stay.slug}`} className="underline underline-offset-4">{stay.name}</Link> <span className="text-maroon">· placeholder name</span></p>}
                     </div>
                   ),
                 };

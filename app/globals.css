@@ -11,10 +11,11 @@
   --stone-dark: #cfc3b1;
   --ink: #1f1a17;
   --ink-soft: #4a423c;
-  --ink-mute: #7a7069;
+  --ink-mute: #665d56;
   --maroon: #6b1f2a;
   --maroon-deep: #4e141c;
   --saffron: #d99a2b;
+  --saffron-light: #e8b860; /* saffron for text on pine/maroon backgrounds (AA contrast) */
   --pine: #2f4a3b;
   --pine-deep: #1f3328;
   --line: rgba(31, 26, 23, 0.14);
@@ -39,6 +40,7 @@
   --color-maroon: var(--maroon);
   --color-maroon-deep: var(--maroon-deep);
   --color-saffron: var(--saffron);
+  --color-saffron-light: var(--saffron-light);
   --color-pine: var(--pine);
   --color-pine-deep: var(--pine-deep);
   --color-line: var(--line);

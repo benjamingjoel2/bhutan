@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import type { Journey, JourneyKind, Region, BudgetTier } from "@/data/types";
 import { regionLabels } from "@/data/types";
 import { JourneyCard } from "./Cards";
@@ -69,7 +70,7 @@ export function JourneyFilters({ journeys }: { journeys: Journey[] }) {
         </div>
       </div>
       {list.length === 0 ? (
-        <p className="py-20 text-center text-ink-soft">No journey matches every filter. Loosen one, or <a href="/plan-your-journey" className="underline">tell us what you want</a> and we will build it.</p>
+        <p className="py-20 text-center text-ink-soft">No journey matches every filter. Loosen one, or <Link href="/plan-your-journey" className="underline">tell us what you want</Link> and we will build it.</p>
       ) : (
         <div className="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {list.map((j) => <JourneyCard key={j.slug} j={j} />)}

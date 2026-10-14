@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { journeys } from "@/data/journeys";
 import { images } from "@/data/images";
 import { PageHero } from "@/components/shared/PageHero";
@@ -15,7 +16,7 @@ export default function JourneysPage() {
       <section className="section-y-sm">
         <div className="container-x">
           <Suspense><JourneyFilters journeys={journeys} /></Suspense>
-          <p className="mt-10 text-[0.8125rem] text-ink-mute">Prices are per person sharing, all-in, and include the Sustainable Development Fee and visa fee. Looking for a trek? See <a href="/treks" className="underline underline-offset-4">treks</a>.</p>
+          <p className="mt-10 text-[0.8125rem] text-ink-mute">Prices are per person sharing, all-in, and include the Sustainable Development Fee and visa fee. Looking for a trek? See <Link href="/treks" className="underline underline-offset-4">treks</Link>.</p>
         </div>
       </section>
       <CtaBand title="Nothing quite right? Good. We prefer to start from a blank page." />

@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { PlanBar } from "@/components/layout/PlanBar";
 import { images } from "@/data/images";
+import { media } from "@/config/site";
 
 /**
  * Full-bleed video hero. The <video> sources are placeholders — drop
@@ -17,17 +18,11 @@ export function Hero() {
     <section className="relative flex min-h-[100svh] flex-col justify-end bg-ink text-white">
       <div className="absolute inset-0 overflow-hidden">
         <Image src={poster.src} alt={poster.alt} fill priority sizes="100vw" className="object-cover" />
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={poster.src}
-          aria-hidden="true"
-        >
-          <source src="/video/hero.mp4" type="video/mp4" />
-        </video>
+        {media.heroLoop && (
+          <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline poster={poster.src} aria-hidden="true">
+            <source src={media.heroLoop} type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/10 to-ink/60" aria-hidden="true" />
       </div>
 
@@ -86,10 +81,22 @@ export function Hero() {
           >
             <button className="absolute right-6 top-6 text-[0.6875rem] uppercase tracking-[0.18em] text-white" onClick={() => setPlaying(false)}>Close</button>
             <div className="aspect-video w-full max-w-5xl bg-black" onClick={(e) => e.stopPropagation()}>
-              <video className="h-full w-full" controls autoPlay poster={poster.src}>
-                <source src="/video/hero-full.mp4" type="video/mp4" />
-                Video placeholder — add /public/video/hero-full.mp4.
-              </video>
+              {media.heroFull ? (
+                <video className="h-full w-full" controls autoPlay poster={poster.src}>
+                  <source src={media.heroFull} type="video/mp4" />
+                </video>
+              ) : (
+                <div className="relative h-full w-full">
+                  <Image src={poster.src} alt={poster.alt} fill sizes="100vw" className="object-cover opacity-50" />
+                  <div className="absolute inset-0 grid place-items-center text-center">
+                    <div>
+                      <p className="eyebrow text-saffron">Video placeholder</p>
+                      <p className="mt-3 font-display text-[1.75rem]">Dawn over a dzong, prayer flags on a mountain pass.</p>
+                      <p className="mt-2 text-[0.8125rem] text-white/70">Set media.heroFull in config/site.ts to play the full film here.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

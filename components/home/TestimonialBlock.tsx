@@ -24,9 +24,11 @@ export function TestimonialBlock() {
             </motion.blockquote>
           </AnimatePresence>
         </div>
-        <div className="mt-8 flex justify-center gap-2" role="tablist" aria-label="Testimonials">
+        <div className="mt-6 flex justify-center gap-1" role="tablist" aria-label="Testimonials">
           {testimonials.map((x, n) => (
-            <button key={x.id} role="tab" aria-selected={n === i} aria-label={`Testimonial ${n + 1}`} onClick={() => setI(n)} className={cn("h-1.5 w-1.5 rounded-full transition-colors", n === i ? "bg-maroon" : "bg-stone-dark")} />
+            <button key={x.id} type="button" role="tab" aria-selected={n === i} aria-label={`Testimonial ${n + 1}`} onClick={() => setI(n)} className="grid h-6 w-6 place-items-center">
+              <span className={cn("h-1.5 w-1.5 rounded-full transition-colors", n === i ? "bg-maroon" : "bg-ink-mute/40")} />
+            </button>
           ))}
         </div>
       </div>

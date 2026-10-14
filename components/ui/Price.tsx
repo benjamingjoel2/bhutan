@@ -28,7 +28,7 @@ export function PriceLine({
       <p className={cn("text-[0.9375rem]", light ? "text-white/90" : "text-ink")}>
         From <Price usd={usd} className="font-medium" /> <span className={light ? "text-white/60" : "text-ink-mute"}>{unit}</span>
       </p>
-      <p className={cn("text-[0.6875rem] uppercase tracking-[0.16em]", light ? "text-saffron" : "text-pine")}>
+      <p className={cn("text-[0.6875rem] uppercase tracking-[0.16em]", light ? "text-saffron-light" : "text-pine")}>
         {sdfIncluded ? "SDF included" : "SDF not included"}
         {visaIncluded !== undefined && <> · {visaIncluded ? "Visa fee included" : "Visa fee not included"}</>}
       </p>
