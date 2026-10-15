@@ -53,7 +53,7 @@ export function JourneyFilters({ journeys }: { journeys: Journey[] }) {
 
   return (
     <div>
-      <div className="sticky top-16 z-30 -mx-5 border-b border-line bg-whitewash/95 px-5 py-4 backdrop-blur md:mx-0 md:px-0">
+      <div className="sticky top-16 z-30 -mx-4 border-b border-line bg-whitewash/95 px-4 py-4 backdrop-blur md:mx-0 md:px-0">
         <div className="scrollbar-none flex items-center gap-2 overflow-x-auto">
           {kinds.map((k) => (
             <button key={k.id} onClick={() => setKind(k.id)} aria-pressed={kind === k.id} className={cn("shrink-0 rounded-full border px-4 py-2 text-[0.75rem] uppercase tracking-[0.12em] transition-colors", kind === k.id ? "border-ink bg-ink text-whitewash" : "border-line-strong text-ink-soft hover:border-ink")}>{k.label}</button>
