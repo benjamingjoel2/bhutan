@@ -21,7 +21,7 @@ export function SubNav({ items, cta }: { items: { id: string; label: string }[];
   return (
     <div className="sticky top-16 z-30 border-b border-line bg-whitewash/95 backdrop-blur">
       <div className="container-x flex items-center justify-between gap-6">
-        <nav aria-label="On this page" className="scrollbar-none -mx-5 overflow-x-auto px-5 md:mx-0 md:px-0">
+        <nav aria-label="On this page" className="scrollbar-none -mx-4 overflow-x-auto px-4 md:mx-0 md:px-0">
           <ul className="flex gap-7 whitespace-nowrap">
             {items.map((i) => (
               <li key={i.id}>

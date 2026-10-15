@@ -14,7 +14,7 @@ export function Footer() {
           <p className="mt-3 text-[0.9375rem] text-ink-soft">Festival dates as they are confirmed, new lodges, and the quiet months worth travelling in.</p>
           <NewsletterForm className="mt-6" />
         </div>
-        <div className="flex gap-6 md:justify-end">
+        <div className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
           {site.social.map((s) => (
             <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="text-[0.6875rem] uppercase tracking-[0.18em] font-medium link-underline">
               {s.label}

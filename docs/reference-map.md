@@ -6,7 +6,7 @@ exact pixel values below are marked **(est.)** = estimated. Drop full-page scree
 `reference/` at any time and the side-by-side pass will correct them.
 
 Conventions used throughout
-- Container: max-width 1440px, side padding 24px mobile / 48px tablet / 80px desktop (est.)
+- Container: max-width 1600px, side padding 16px mobile / 24px tablet / 40px desktop (reduced from the first build on request)
 - Vertical rhythm: sections 96–128px apart on desktop, 64px on mobile (est.)
 - Type: serif display (reference uses a light humanist serif) → **Cormorant Garamond** (Google Fonts);
   sans body (reference uses a geometric grotesk) → **Jost**. Eyebrows: sans, 11–12px, tracking 0.18em, uppercase.
