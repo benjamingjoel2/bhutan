@@ -5,8 +5,7 @@
  */
 import type { ImageRef } from "./types";
 
-const u = (id: string, w = 1600) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&q=75&auto=format&fit=crop`;
+const u = (id: string) => `https://images.unsplash.com/photo-${id}`;
 
 export const images = {
   tigersNest: { src: u("1578556881786-851d4b79cb73"), alt: "Taktsang, the Tiger's Nest monastery, clinging to a cliff above the Paro valley" },

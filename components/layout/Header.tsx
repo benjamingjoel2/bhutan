@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { navigation } from "@/config/site";
 import { useUi } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { CurrencySwitcher } from "./CurrencySwitcher";
-import { MegaMenu } from "./MegaMenu";
-import { MobileMenu } from "./MobileMenu";
+
+// Mega-menu (and the animation library) loads on first hover/focus, or when the browser is idle.
+const MegaMenuLayer = dynamic(() => import("./MegaMenuLayer"), { ssr: false });
+const preloadMegaMenu = () => void import("./MegaMenuLayer");
 
 /**
  * Header behaviour (mirrors the reference):
@@ -25,6 +27,12 @@ export function Header() {
   const [active, setActive] = useState<string | null>(null);
   const [transparentPage, setTransparentPage] = useState(false);
   const closeTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+    if (w.requestIdleCallback) w.requestIdleCallback(preloadMegaMenu);
+    else window.setTimeout(preloadMegaMenu, 2500);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -75,7 +83,7 @@ export function Header() {
               </span>
               <span className="hidden text-[0.6875rem] uppercase tracking-[0.18em] font-medium sm:inline">Menu</span>
             </button>
-            <nav className="hidden lg:block" aria-label="Primary">
+            <nav className="hidden lg:block" aria-label="Primary" onMouseEnter={preloadMegaMenu} onFocus={preloadMegaMenu}>
               <ul className="flex items-center gap-7">
                 {navigation.map((g) => {
                   const isActive = active === g.label;
@@ -122,24 +130,14 @@ export function Header() {
           </div>
         </div>
 
-        <AnimatePresence>
-          {active && (() => {
-            const group = navigation.find((g) => g.label === active)!;
-            return (
-              <div key={group.label} onMouseEnter={() => open(group.label)} onMouseLeave={scheduleClose} className="hidden lg:block">
-                <MegaMenu id={`mega-${group.label}`} group={group} onClose={() => setActive(null)} />
-              </div>
-            );
-          })()}
-        </AnimatePresence>
+        <MegaMenuLayer active={active} onEnter={open} onLeave={scheduleClose} onClose={() => setActive(null)} />
       </header>
       {/* Backdrop while mega-menu is open */}
-      <AnimatePresence>
-        {active && (
-          <div className="fixed inset-0 z-40 hidden bg-ink/25 lg:block" aria-hidden="true" onMouseEnter={() => setActive(null)} />
-        )}
-      </AnimatePresence>
-      <MobileMenu />
+      <div
+        className={cn("fixed inset-0 z-40 hidden bg-ink/25 transition-opacity duration-300 lg:block", active ? "opacity-100" : "pointer-events-none opacity-0")}
+        aria-hidden="true"
+        onMouseEnter={() => setActive(null)}
+      />
     </>
   );
 }

@@ -8,10 +8,10 @@ export const site = {
   tagline: "Tailor-made journeys through the Kingdom of Bhutan",
   description:
     "Dzong House opens Bhutan to a small number of thoughtful travellers. One dedicated specialist, a licensed Bhutanese partner operator and licensed local guides, from the first message to the day you fly home.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dzonghouse.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dzonghouse.tourground.com",
   locale: "en",
   contact: {
-    email: "[EMAIL]",
+    email: "hello@dzonghouse.tourground.com",
     phone: "[PHONE]",
     phoneHref: "tel:+000000000000",
     whatsappNumber: "[NUMBER]", // digits only, international format, e.g. 97517123456

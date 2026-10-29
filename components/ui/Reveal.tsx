@@ -1,10 +1,14 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
+/**
+ * Scroll reveal markers. These render plain server HTML that is visible from the first
+ * paint. components/layout/RevealObserver.tsx fades in only the items that start below
+ * the fold, so nothing on screen ever waits for JavaScript. See `.reveal` in globals.css.
+ */
 type Props = {
   children: ReactNode;
+  /** Kept for API compatibility; stagger timing comes from RevealObserver. */
   delay?: number;
   y?: number;
   className?: string;
@@ -12,45 +16,14 @@ type Props = {
   once?: boolean;
 };
 
-/** Fade-up on scroll, matching the reference's reveal rhythm (600ms, ease-out). */
-export function Reveal({ children, delay = 0, y = 24, className, as = "div", once = true }: Props) {
-  const reduce = useReducedMotion();
-  const M = motion[as];
-  return (
-    <M
-      className={className}
-      initial={reduce ? false : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-10% 0px -10% 0px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
-    >
-      {children}
-    </M>
-  );
+export function Reveal({ children, className, as: Tag = "div" }: Props) {
+  return <Tag className={cn("reveal", className)}>{children}</Tag>;
 }
 
 export function Stagger({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-10% 0px" }}
-      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09 } } }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={cn("stagger", className)}>{children}</div>;
 }
 
 export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      variants={{ hidden: reduce ? {} : { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={cn("reveal", className)}>{children}</div>;
 }

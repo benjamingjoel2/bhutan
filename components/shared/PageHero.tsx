@@ -35,7 +35,7 @@ export function PageHero({
   }
   return (
     <section className={cn("relative flex flex-col justify-end bg-ink text-white", heights[size])}>
-      <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="object-cover" />
+      <Image src={image.src} alt={image.alt} fill priority quality={55} sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-ink/30" aria-hidden="true" />
       <div className={cn("container-x relative pb-14 pt-40 md:pb-20", align === "center" && "text-center")}>
         <div className={cn("max-w-3xl", align === "center" && "mx-auto")}>
