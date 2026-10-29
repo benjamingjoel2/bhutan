@@ -21,7 +21,7 @@ export default function TestimonialsPage() {
                 <StaggerItem key={t.id} className="flex h-full flex-col justify-between border border-line bg-white p-8 md:p-10">
                   <div>
                     <span className="mb-4 inline-block bg-saffron/25 px-2 py-0.5 text-[0.625rem] uppercase tracking-[0.18em]">Placeholder</span>
-                    <p className="font-display text-[1.5rem] italic leading-snug">&ldquo;{t.quote}&rdquo;</p>
+                    <p className="quote-italic text-[1.5rem] leading-snug">&ldquo;{t.quote}&rdquo;</p>
                   </div>
                   <p className="mt-8 text-[0.75rem] uppercase tracking-[0.16em] text-ink-mute">{t.name} · {t.country}{j && <> · <Link href={`/journeys/${j.slug}`} className="text-maroon">{j.name}</Link></>}</p>
                 </StaggerItem>

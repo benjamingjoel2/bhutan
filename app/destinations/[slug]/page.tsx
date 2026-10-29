@@ -82,7 +82,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
               <StaggerItem key={s.name} className="border-t border-line-strong pt-5">
                 <div className="flex items-center justify-between">
                   <h3 className="display-sm">{s.name}</h3>
-                  <span className="flex gap-1" aria-label={`${s.rating} of 3`}>
+                  <span className="flex gap-1" role="img" aria-label={`Season rating ${s.rating} of 3`}>
                     {[1, 2, 3].map((n) => <span key={n} className={cn("h-1.5 w-1.5 rounded-full", n <= s.rating ? "bg-maroon" : "bg-stone-dark")} />)}
                   </span>
                 </div>

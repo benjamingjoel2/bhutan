@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { planner } from "@/config/site";
 import { useUi } from "@/lib/ui";
 import { cn } from "@/lib/utils";
@@ -82,42 +81,37 @@ export function PlanBar({ variant = "hero", className }: { variant?: "hero" | "i
         </button>
       </div>
 
-      {/* Sticky compact strip (desktop) & pinned button (mobile) once the hero bar scrolls away */}
-      <AnimatePresence>
-        {variant === "hero" && stuck && (
-          <>
-            <motion.div
-              key="stuck-desktop"
-              initial={{ y: -16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -16, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-x-0 top-16 z-40 hidden border-b border-line bg-whitewash/95 backdrop-blur md:block"
-            >
-              <div className="container-x grid grid-cols-[repeat(4,minmax(0,1fr))_auto] items-stretch">
-                {fields(true)}
-                <button onClick={begin} className="my-2 ml-4 rounded-full bg-maroon px-7 text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:bg-maroon-deep">
-                  Begin
-                </button>
-              </div>
-            </motion.div>
-            <motion.div
-              key="stuck-mobile"
-              initial={{ y: 80 }}
-              animate={{ y: 0 }}
-              exit={{ y: 80 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-whitewash p-3 md:hidden"
-            >
-              <button onClick={begin} className="btn btn-primary w-full">Plan your journey</button>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-      <style jsx global>{`
-        .bar-select { width: 100%; appearance: none; background: transparent; border: 0; outline: none; font-family: var(--font-body); font-size: 0.9375rem; color: var(--ink); cursor: pointer; padding-right: 1rem;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231f1a17' stroke-width='1.2'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0 center; }
-      `}</style>
+      {/* Sticky compact strip (desktop) & pinned button (mobile) once the hero bar scrolls away.
+          Always rendered; shown and hidden with CSS transitions. */}
+      {variant === "hero" && (
+        <>
+          <div
+            inert={!stuck}
+            aria-hidden={!stuck}
+            className={cn(
+              "fixed inset-x-0 top-16 z-40 hidden border-b border-line bg-whitewash/95 backdrop-blur transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:block",
+              stuck ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-4 opacity-0",
+            )}
+          >
+            <div className="container-x grid grid-cols-[repeat(4,minmax(0,1fr))_auto] items-stretch">
+              {fields(true)}
+              <button onClick={begin} className="my-2 ml-4 rounded-full bg-maroon px-7 text-[0.6875rem] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:bg-maroon-deep">
+                Begin
+              </button>
+            </div>
+          </div>
+          <div
+            inert={!stuck}
+            aria-hidden={!stuck}
+            className={cn(
+              "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-whitewash p-3 transition-transform duration-300 md:hidden",
+              stuck ? "translate-y-0" : "pointer-events-none translate-y-full",
+            )}
+          >
+            <button onClick={begin} className="btn btn-primary w-full">Plan your journey</button>
+          </div>
+        </>
+      )}
     </>
   );
 }
