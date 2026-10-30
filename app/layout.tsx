@@ -7,7 +7,6 @@ import { CurrencyProvider } from "@/lib/currency";
 import { UiProvider } from "@/lib/ui";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { LazyOverlays } from "@/components/layout/LazyOverlays";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 
@@ -28,6 +27,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${display.variable} ${displayItalic.variable} ${body.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "TravelAgency",
+              name: site.name,
+              url: site.url,
+              email: site.contact.email,
+              description: site.description,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: site.contact.addressParts.street,
+                addressLocality: site.contact.addressParts.locality,
+                postalCode: site.contact.addressParts.postalCode,
+                addressCountry: site.contact.addressParts.country,
+              },
+            }),
+          }}
+        />
         <CurrencyProvider>
           <UiProvider>
             <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ink focus:px-4 focus:py-2 focus:text-white">
@@ -36,7 +55,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Header />
             {children}
             <Footer />
-            <WhatsAppButton />
             <LazyOverlays />
             <RevealObserver />
           </UiProvider>

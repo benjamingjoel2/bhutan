@@ -7,27 +7,15 @@ export const site = {
   name: "Dzong House",
   tagline: "Tailor-made journeys through the Kingdom of Bhutan",
   description:
-    "Dzong House opens Bhutan to a small number of thoughtful travellers. One dedicated specialist, a licensed Bhutanese partner operator and licensed local guides, from the first message to the day you fly home.",
+    "Dzong House opens Bhutan to a small number of thoughtful travellers. One dedicated specialist, a Bhutanese partner operator and local guides, from the first message to the day you fly home.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dzonghouse.tourground.com",
   locale: "en",
   contact: {
-    email: "hello@dzonghouse.tourground.com",
-    phone: "[PHONE]",
-    phoneHref: "tel:+000000000000",
-    whatsappNumber: "[NUMBER]", // digits only, international format, e.g. 97517123456
-    address: "Thimphu, Bhutan · and wherever you are",
+    email: "dzonghouse@tourground.com",
+    /** Business address: Thimphu TechPark (https://thimphutechpark.bt), the city's technology park and shared workspace. */
+    address: "Thimphu TechPark, Gepja Zur Lam, Wangchhu Taba, Babesa, Thimphu 11001, Bhutan",
+    addressParts: { street: "Thimphu TechPark, Gepja Zur Lam, Wangchhu Taba, Babesa", locality: "Thimphu", postalCode: "11001", country: "BT" },
   },
-  partner: {
-    name: "[PARTNER NAME]",
-    licence: "[LICENCE NUMBER]",
-    note: "Licensed Bhutanese tour operator. Verify licence details against https://www.bhutan.travel before launch.",
-  },
-  social: [
-    { label: "Instagram", href: "https://instagram.com/", icon: "instagram" },
-    { label: "Facebook", href: "https://facebook.com/", icon: "facebook" },
-    { label: "YouTube", href: "https://youtube.com/", icon: "youtube" },
-    { label: "Pinterest", href: "https://pinterest.com/", icon: "pinterest" },
-  ],
 } as const;
 
 /** Hero media. Leave the paths empty until real footage exists; the poster image shows instead. */
@@ -35,8 +23,6 @@ export const media = {
   heroLoop: "", // e.g. "/video/hero.mp4" — short muted loop, dawn over a dzong
   heroFull: "", // e.g. "/video/hero-full.mp4" or an embed URL for "Play full video"
 } as const;
-
-export const whatsappHref = `https://wa.me/${site.contact.whatsappNumber.replace(/[^0-9]/g, "")}`;
 
 /** Brand palette — mirrored as CSS variables in app/globals.css */
 export const colors = {
@@ -239,14 +225,12 @@ export const navigation: NavGroup[] = [
       {
         links: [
           { label: "Our story", href: "/about" },
-          { label: "Meet the team", href: "/about#team" },
           { label: "Our Bhutanese partners", href: "/our-partners" },
           { label: "Responsible travel", href: "/responsible-travel" },
         ],
       },
       {
         links: [
-          { label: "Testimonials", href: "/testimonials" },
           { label: "FAQ", href: "/faq" },
           { label: "Contact", href: "/contact" },
           { label: "Journal", href: "/journal" },
@@ -289,7 +273,6 @@ export const footerColumns = [
       { label: "Our story", href: "/about" },
       { label: "Our partners", href: "/our-partners" },
       { label: "Responsible travel", href: "/responsible-travel" },
-      { label: "Testimonials", href: "/testimonials" },
       { label: "Journal", href: "/journal" },
       { label: "FAQ", href: "/faq" },
     ],
@@ -297,9 +280,9 @@ export const footerColumns = [
 ];
 
 export const legalLinks = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-  { label: "Cookies", href: "/cookies" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Booking Terms", href: "/terms" },
+  { label: "Cookie Policy", href: "/cookies" },
 ];
 
 export const planner = {

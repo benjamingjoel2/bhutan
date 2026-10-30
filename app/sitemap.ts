@@ -9,7 +9,7 @@ import { stays } from "@/data/stays";
 import { posts } from "@/data/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ["", "/destinations", "/journeys", "/treks", "/wellness", "/experiences", "/festivals", "/offers", "/about", "/our-partners", "/responsible-travel", "/testimonials", "/faq", "/contact", "/journal", "/plan-your-journey"];
+  const staticPaths = ["", "/destinations", "/journeys", "/treks", "/wellness", "/experiences", "/festivals", "/offers", "/about", "/our-partners", "/responsible-travel", "/faq", "/contact", "/journal", "/plan-your-journey"];
   const dynamic = [
     ...destinations.map((d) => `/destinations/${d.slug}`),
     ...journeys.map((j) => `/journeys/${j.slug}`),

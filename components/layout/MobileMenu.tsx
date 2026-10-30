@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { navigation, site, whatsappHref } from "@/config/site";
+import { navigation, site } from "@/config/site";
 import { useUi } from "@/lib/ui";
 import { CurrencySwitcher } from "./CurrencySwitcher";
 import { cn } from "@/lib/utils";
@@ -78,9 +78,8 @@ export function MobileMenu() {
           </nav>
           <div className="space-y-3 border-t border-line p-5">
             <button className="btn btn-primary w-full" onClick={() => openPlanner()}>Plan your journey</button>
-            <div className="flex justify-between text-[0.8125rem] text-ink-soft">
+            <div className="text-[0.8125rem] text-ink-soft">
               <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-              <a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
             </div>
           </div>
         </motion.div>
