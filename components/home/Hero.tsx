@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-end bg-ink text-white">
       <div className="absolute inset-0 overflow-hidden">
-        <Image src={poster.src} alt={poster.alt} fill priority quality={65} sizes="100vw" className="object-cover" />
+        <Image src={poster.src} alt={poster.alt} fill priority sizes="100vw" className="object-cover" />
         {media.heroLoop && (
           <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="none" aria-hidden="true">
             <source src={media.heroLoop} type="video/mp4" />
