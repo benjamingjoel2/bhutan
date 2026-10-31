@@ -147,15 +147,6 @@ export type Offer = {
   placeholder: true;
 };
 
-export type Testimonial = {
-  id: string;
-  quote: string;
-  name: string;
-  country: string;
-  journey: string;
-  placeholder: true;
-};
-
 export type PostMeta = {
   slug: string;
   title: string;

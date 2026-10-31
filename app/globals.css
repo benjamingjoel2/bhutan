@@ -160,6 +160,7 @@ select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csv
 .prose-dzong h3 { font-family: var(--font-display); font-size: 1.5rem; margin: 2em 0 0.5em; font-weight: 400; }
 .prose-dzong ul, .prose-dzong ol { margin: 0 0 1.4em 1.2em; color: var(--ink-soft); }
 .prose-dzong li { margin: 0.35em 0; }
+.prose-dzong.legal ul { list-style: disc; }
 .prose-dzong a { color: var(--maroon); text-decoration: underline; text-underline-offset: 3px; }
 .prose-dzong blockquote { border-left: 2px solid var(--saffron); padding-left: 1.25rem; font-family: var(--font-display); font-size: 1.5rem; line-height: 1.35; margin: 2em 0; }
 .prose-dzong strong { font-weight: 500; color: var(--ink); }

@@ -11,7 +11,7 @@ const VERIFY = "Verify against https://www.bhutan.travel before launch.";
 
 const trekInclusions = (extra: string[] = []): string[] => [
   `Sustainable Development Fee (SDF) for every night in Bhutan, including camp nights; the fee funds free healthcare, education and conservation and is what keeps the trails as empty as they are. ${VERIFY}`,
-  `Bhutan visa fee and visa processing, arranged by our licensed Bhutanese partner operator. ${VERIFY}`,
+  `Bhutan visa fee and visa processing, arranged by our Bhutanese partner operator. ${VERIFY}`,
   `Licensed trekking guide throughout. A licensed trekking guide and support team are required by regulation for every trek in Bhutan; this is not optional and we would not want it to be. ${VERIFY}`,
   "Trek cook and kitchen crew, serving three hot meals a day and tea at every pause.",
   "Horsemen and pack animals (horses or yaks at altitude) to carry camp, kitchen and your duffel; you walk with a daysack.",

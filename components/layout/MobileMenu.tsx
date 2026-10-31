@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { navigation, site, whatsappHref } from "@/config/site";
+import { navigation, site } from "@/config/site";
 import { useUi } from "@/lib/ui";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 export function MobileMenu() {
@@ -25,7 +26,7 @@ export function MobileMenu() {
           aria-label="Menu"
         >
           <div className="flex h-16 items-center justify-between border-b border-line px-5">
-            <CurrencySwitcher />
+            <div className="flex items-center gap-5"><CurrencySwitcher /><LanguageSwitcher /></div>
             <button onClick={() => setMenuOpen(false)} className="text-[0.6875rem] uppercase tracking-[0.18em] font-medium" aria-label="Close menu">
               Close
             </button>
@@ -78,9 +79,8 @@ export function MobileMenu() {
           </nav>
           <div className="space-y-3 border-t border-line p-5">
             <button className="btn btn-primary w-full" onClick={() => openPlanner()}>Plan your journey</button>
-            <div className="flex justify-between text-[0.8125rem] text-ink-soft">
+            <div className="text-[0.8125rem] text-ink-soft">
               <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-              <a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
             </div>
           </div>
         </motion.div>

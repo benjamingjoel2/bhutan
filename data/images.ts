@@ -5,7 +5,8 @@
  */
 import type { ImageRef } from "./types";
 
-const u = (id: string) => `https://images.unsplash.com/photo-${id}`;
+// The optimizer resizes from a 2400px JPEG master rather than the multi-megabyte original.
+const u = (id: string) => `https://images.unsplash.com/photo-${id}?w=2400&q=85&fm=jpg&fit=crop`;
 
 export const images = {
   tigersNest: { src: u("1578556881786-851d4b79cb73"), alt: "Taktsang, the Tiger's Nest monastery, clinging to a cliff above the Paro valley" },

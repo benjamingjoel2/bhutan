@@ -22,5 +22,5 @@ export const searchIndex: SearchItem[] = [
   { type: "Page", title: "Plan your journey", href: "/plan-your-journey", keywords: ["planner", "enquire", "book"] },
   { type: "Page", title: "FAQ", href: "/faq", keywords: ["visa", "sdf", "fee", "questions"] },
   { type: "Page", title: "Offers", href: "/offers", keywords: ["offer", "deal"] },
-  { type: "Page", title: "Contact", href: "/contact", keywords: ["email", "whatsapp", "phone"] },
+  { type: "Page", title: "Contact", href: "/contact", keywords: ["email", "address", "enquiry"] },
 ];
