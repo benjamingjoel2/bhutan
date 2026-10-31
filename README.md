@@ -11,6 +11,26 @@ npm run build && npm start
 npm run lint
 ```
 
+
+## Cloudflare Workers (OpenNext)
+
+The site also runs on Cloudflare Workers through the [OpenNext adapter](https://opennext.js.org/cloudflare). This sits alongside Vercel: `npm run build` / `next build` and the Vercel deployment are unchanged.
+
+```
+npm run cf-build   # opennextjs-cloudflare build: runs `npm run build` (with its prebuild hook), then bundles .open-next/
+npm run preview    # build, then serve the Worker locally in workerd (http://localhost:8787)
+npm run deploy     # build, then deploy to Cloudflare (needs a Cloudflare account / `wrangler login`)
+```
+
+- `wrangler.jsonc`: Worker name `bhutan`, `nodejs_compat`, static assets from `.open-next/assets`.
+- `open-next.config.ts`: every page is prerendered and nothing revalidates, so prerendered pages are served read-only from Workers static assets (no R2 or KV to create). If ISR / `revalidate` is added later, switch to the R2 incremental cache.
+- `public/_headers`: cache headers for static files (Workers serves them before Next's `headers()` would run). Redirects in `next.config.ts` are handled by the Worker.
+- Use `npm run preview` (not bare `wrangler dev`) to test locally: it copies the prerendered pages into the assets before starting.
+- `npm run cf-build` runs `npm run build`, so the i18n `prebuild` step (`scripts/i18n.mjs`, which generates `app/fr|de|es`) runs on Cloudflare too.
+- `next/image` optimisation (Unsplash, AVIF/WebP) uses the Cloudflare Images binding `IMAGES` on Workers. Transformations are billed by Cloudflare Images (a free monthly allowance, then per unique transformation).
+- Next is pinned to 15.5.28, the lowest 15.5 release `@opennextjs/cloudflare` supports.
+- The Worker is about 2.7 MiB gzipped: under the Workers Free limit of 3 MiB, with little headroom.
+
 ## Where things live
 
 | Path | What |

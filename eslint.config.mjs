@@ -22,6 +22,8 @@ const eslintConfig = [
       "app/de/**",
       "app/es/**",
       "i18n/gen/**",
+      ".open-next/**",
+      ".wrangler/**",
     ],
   },
 ];
