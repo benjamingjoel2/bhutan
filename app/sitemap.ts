@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
+import { LOCALES, localePath, languageAlternates } from "@/lib/i18n-paths";
 import { destinations } from "@/data/destinations";
 import { journeys } from "@/data/journeys";
 import { treks } from "@/data/treks";
@@ -19,5 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...stays.map((s) => `/stays/${s.slug}`),
     ...posts.map((p) => `/journal/${p.slug}`),
   ];
-  return [...staticPaths, ...dynamic].map((p) => ({ url: `${site.url}${p}`, lastModified: new Date(), changeFrequency: "monthly", priority: p === "" ? 1 : 0.7 }));
+  const abs = (p: string) => `${site.url}${p === "/" ? "" : p}`;
+  return [...staticPaths, ...dynamic].flatMap((p) =>
+    LOCALES.map((l) => ({
+      url: abs(localePath(p || "/", l)),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: p === "" ? 1 : 0.7,
+      alternates: { languages: Object.fromEntries(Object.entries(languageAlternates(p || "/")).map(([k, v]) => [k, abs(v)])) },
+    })),
+  );
 }

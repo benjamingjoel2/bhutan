@@ -24,6 +24,17 @@ npm run lint
 | `components/planner` | Five-step trip planner (modal and `/plan-your-journey`) |
 | `docs/reference-map.md` | Section-by-section layout map the site was built from |
 
+## Languages (English, French, German, Spanish)
+
+English pages live at the root (`/about`), the others under `/fr`, `/de` and `/es` (`/fr/about`). Every page is pre-rendered in all four languages, with no translation library in the browser.
+
+- **Source of truth is English.** The routes are in `app/(en)/`; components, data, config and lib are shared as before.
+- **Translations** are in `i18n/fr.json`, `i18n/de.json` and `i18n/es.json`, keyed by the English text. `{0}`, `{1}` stand for the dynamic parts of a sentence.
+- **`npm run build` / `npm run dev`** first run `scripts/i18n.mjs`, which writes a translated copy of the English tree to `app/fr|de|es/` and `i18n/gen/` (both git-ignored). Internal links get the language prefix automatically. The build **fails if a visible English string has no translation**, and lists the strings.
+- **To change copy:** edit the English text as usual, run `npm run i18n`, and add the strings it reports to the three JSON files. (`node scripts/i18n.mjs --missing` writes them to `i18n/missing.json`.)
+- **Journal posts** are translated as whole files in `content/i18n/<lang>/journal/`, with the same file names as `content/journal/`.
+- The header (desktop) and the mobile menu show **EN · FR · DE · ES**. Each link goes to the same page in the other language, and there is no automatic redirect by browser language. `<html lang>`, canonical and `hreflang` alternates (with `x-default` = English) are set on every page, and the sitemap lists all four languages.
+
 ## Before launch
 
 - Have a lawyer review the Privacy Policy, Booking Terms and Cookie Policy (`app/privacy`, `app/terms`, `app/cookies`). Update the Cookie Policy if analytics or other storage is added.

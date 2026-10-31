@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { preconnect } from "react-dom";
-import "./globals.css";
+import "../globals.css";
 import { site } from "@/config/site";
-import { display, displayItalic, body } from "./fonts";
+import { display, displayItalic, body } from "../fonts";
+import { locale } from "@/lib/locale";
+import { OG_LOCALES } from "@/lib/i18n-paths";
 import { CurrencyProvider } from "@/lib/currency";
 import { UiProvider } from "@/lib/ui";
 import { Header } from "@/components/layout/Header";
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: `${site.name} · ${site.tagline}`, template: `%s · ${site.name}` },
   description: site.description,
-  openGraph: { type: "website", siteName: site.name, locale: "en_GB" },
+  openGraph: { type: "website", siteName: site.name, locale: OG_LOCALES[locale] },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
@@ -25,7 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   // Open the connection to the image CDN while the HTML is still parsing
   preconnect("https://images.unsplash.com", { crossOrigin: "anonymous" });
   return (
-    <html lang="en" className={`${display.variable} ${displayItalic.variable} ${body.variable}`}>
+    <html lang={locale} className={`${display.variable} ${displayItalic.variable} ${body.variable}`}>
       <body>
         <script
           type="application/ld+json"

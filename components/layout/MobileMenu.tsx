@@ -6,6 +6,7 @@ import { useState } from "react";
 import { navigation, site } from "@/config/site";
 import { useUi } from "@/lib/ui";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
 export function MobileMenu() {
@@ -25,7 +26,7 @@ export function MobileMenu() {
           aria-label="Menu"
         >
           <div className="flex h-16 items-center justify-between border-b border-line px-5">
-            <CurrencySwitcher />
+            <div className="flex items-center gap-5"><CurrencySwitcher /><LanguageSwitcher /></div>
             <button onClick={() => setMenuOpen(false)} className="text-[0.6875rem] uppercase tracking-[0.18em] font-medium" aria-label="Close menu">
               Close
             </button>

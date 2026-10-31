@@ -12,10 +12,16 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   experimental: {
+    globalNotFound: true,
     optimizePackageImports: ["framer-motion"],
   },
   async redirects() {
-    return [{ source: "/testimonials", destination: "/about", permanent: true }];
+    return [
+      { source: "/testimonials", destination: "/about", permanent: true },
+      { source: "/:locale(fr|de|es)/testimonials", destination: "/:locale/about", permanent: true },
+      { source: "/en", destination: "/", permanent: true },
+      { source: "/en/:path*", destination: "/:path*", permanent: true },
+    ];
   },
   async headers() {
     return [

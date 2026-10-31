@@ -11,7 +11,7 @@ const VERIFY = "Verify against https://www.bhutan.travel before launch.";
 /** The standard Bhutan inclusions. Pass extras for journeys that add Nepal or India days. */
 const bhutanInclusions = (extra: string[] = []): string[] => [
   `Sustainable Development Fee (SDF) for every night in Bhutan, the per-person-per-night fee that funds free healthcare, education and conservation and keeps the kingdom high value, low volume. ${VERIFY}`,
-  `Bhutan visa fee and visa processing, arranged by our licensed Bhutanese partner operator. ${VERIFY}`,
+  `Bhutan visa fee and visa processing, arranged by our Bhutanese partner operator. ${VERIFY}`,
   "Licensed Bhutanese guide throughout, required for all travel outside Thimphu and Paro and, in our view, the best reason to come.",
   "Private driver and private vehicle for the whole journey, from the airport steps to the airport steps.",
   "All meals in Bhutan: breakfast, lunch and dinner, from lodge dining rooms to farmhouse kitchens.",
