@@ -60,7 +60,7 @@ export default function ResponsibleTravelPage() {
         <div className="container-x">
           <SectionHeader eyebrow="How we travel" title="Small promises, kept." size="md" />
           <ul className="mt-10 grid gap-6 md:grid-cols-2">
-            {["Locally owned stays and family farmhouses wherever they suit the journey.", "Guides, drivers and crews paid fairly and directly by our licensed partner.", "Refillable bottles and no single-use plastic on treks.", "Respect for dress codes, photography rules and sacred sites, briefed before you land.", "Slow routes with fewer drives and more nights in each valley.", "Carbon guidance on flights, and honest advice about when not to come."].map((t) => (
+            {["Locally owned stays and family farmhouses wherever they suit the journey.", "Guides, drivers and crews paid fairly and directly by our partner operator.", "Refillable bottles and no single-use plastic on treks.", "Respect for dress codes, photography rules and sacred sites, briefed before you land.", "Slow routes with fewer drives and more nights in each valley.", "Carbon guidance on flights, and honest advice about when not to come."].map((t) => (
               <li key={t} className="flex gap-4 border-t border-line pt-4 text-[1rem] text-ink-soft"><span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-pine" />{t}</li>
             ))}
           </ul>

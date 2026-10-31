@@ -72,7 +72,7 @@ export function PlannerForm({ prefill, onClose, compact }: { prefill?: PlannerPr
       if (!/^\S+@\S+\.\S+$/.test(data.email)) e.email = "A valid email address.";
       if (data.phone && !/^[0-9 ()-]{5,}$/.test(data.phone)) e.phone = "Digits only.";
       if (data.contactMethods.length === 0) e.contactMethods = "How should we reach you?";
-      if (data.contactMethods.some((m) => m !== "Email") && !data.phone) e.phone = "Add a number for WhatsApp or telephone.";
+      if (data.contactMethods.some((m) => m !== "Email") && !data.phone) e.phone = "Add a number so we can call you.";
     }
     return e;
   };
@@ -290,7 +290,7 @@ function StepBudget({ data, set }: Omit<StepProps, "errors">) {
               className={cn("flex flex-col items-start border p-6 text-left transition-colors", active ? "border-maroon bg-white" : "border-line hover:border-line-strong")}>
               <span className="eyebrow">{t.label}</span>
               <span className="mt-3 font-display text-[2rem] leading-none">
-                <Price usd={t.perPersonPerDayUSD} />
+                From <Price usd={t.perPersonPerDayUSD} />
               </span>
               <span className="mt-1 text-[0.6875rem] uppercase tracking-[0.14em] text-pine">per person · day · SDF included</span>
               <span className="mt-3 text-[0.875rem] text-ink-soft">{t.line}</span>
@@ -397,7 +397,7 @@ function StepContact({ data, set, errors }: StepProps) {
         <div>
           <span className="field-label">Preferred contact</span>
           <div className="flex gap-2">
-            {["Email", "WhatsApp", "Telephone"].map((m) => <Chip key={m} active={data.contactMethods.includes(m)} onClick={() => toggleMethod(m)}>{m}</Chip>)}
+            {["Email", "Telephone"].map((m) => <Chip key={m} active={data.contactMethods.includes(m)} onClick={() => toggleMethod(m)}>{m}</Chip>)}
           </div>
           <Err msg={errors.contactMethods} />
         </div>

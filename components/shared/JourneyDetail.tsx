@@ -131,7 +131,7 @@ export function JourneyDetail({ j, trek }: { j: Journey | Trek; trek?: Trek }) {
             {j.pricing.map((p) => (
               <StaggerItem key={p.tier} className={cn("border p-7", p.tier === j.budgetTier ? "border-maroon bg-white" : "border-line")}>
                 <p className="eyebrow">{p.label}</p>
-                <p className="mt-4 font-display text-[2.5rem] leading-none"><Price usd={p.perPersonUSD} /></p>
+                <p className="mt-4 font-display text-[2.5rem] leading-none">From <Price usd={p.perPersonUSD} /></p>
                 <p className="mt-1 text-[0.6875rem] uppercase tracking-[0.14em] text-pine">per person · {j.nights} nights · SDF included · visa fee included</p>
                 <p className="mt-4 text-[0.9375rem] text-ink-soft">{p.note}</p>
               </StaggerItem>

@@ -10,7 +10,7 @@ export function IntroStatement() {
         <p className="mx-auto mt-7 max-w-2xl text-[1.0625rem] leading-relaxed text-ink-soft md:text-[1.125rem]">
           Named for the whitewashed fortress-monasteries that have kept Bhutan&rsquo;s faith, culture and government for centuries,
           we open the kingdom to a small number of thoughtful travellers and look after every detail inside. One dedicated specialist.
-          A licensed Bhutanese partner operator and licensed local guides. From the first message to the day you fly home.
+          A Bhutanese partner operator and local guides. From the first message to the day you fly home.
         </p>
         <div className="mt-8"><TextLink href="/about">Our story</TextLink></div>
       </Reveal>

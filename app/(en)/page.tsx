@@ -9,7 +9,6 @@ import { OffersBand } from "@/components/home/OffersBand";
 import { ExperiencesMosaic } from "@/components/home/ExperiencesMosaic";
 import { JourneyBand } from "@/components/home/JourneyBand";
 import { StaysGrid } from "@/components/home/StaysGrid";
-import { TestimonialBlock } from "@/components/home/TestimonialBlock";
 import { JournalPreview } from "@/components/home/JournalPreview";
 import { NewsletterBand } from "@/components/home/NewsletterBand";
 import { site } from "@/config/site";
@@ -33,7 +32,6 @@ export default function HomePage() {
       <ExperiencesMosaic />
       <JourneyBand />
       <StaysGrid />
-      <TestimonialBlock />
       <JournalPreview />
       <NewsletterBand />
     </main>
