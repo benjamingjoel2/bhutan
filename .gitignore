@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated translations (scripts/i18n.mjs)
+/app/fr/
+/app/de/
+/app/es/
+/i18n/gen/
+/i18n/strings.json
+/i18n/missing.json

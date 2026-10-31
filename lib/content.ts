@@ -3,8 +3,10 @@ import path from "node:path";
 import matter from "gray-matter";
 import { images, type ImageKey } from "@/data/images";
 import { posts as postMeta } from "@/data/posts";
+import { locale } from "@/lib/locale";
 
-const dir = path.join(process.cwd(), "content", "journal");
+// English posts live in content/journal, translations in content/i18n/<locale>/journal.
+const dir = locale === "en" ? path.join(process.cwd(), "content", "journal") : path.join(process.cwd(), "content", "i18n", locale, "journal");
 
 export function getPostSource(slug: string) {
   const file = path.join(dir, `${slug}.mdx`);

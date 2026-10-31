@@ -9,6 +9,7 @@ import { useUi } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 // Mega-menu (and the animation library) loads on first hover/focus, or when the browser is idle.
 const MegaMenuLayer = dynamic(() => import("./MegaMenuLayer"), { ssr: false });
@@ -114,6 +115,7 @@ export function Header() {
 
           {/* Right: utilities */}
           <div className="flex items-center justify-end gap-5 md:gap-7">
+            <LanguageSwitcher light={light} className="hidden lg:flex" />
             <CurrencySwitcher light={light} className="hidden sm:inline-flex" />
             <button onClick={openSearch} aria-label="Search" className="grid h-8 w-8 place-items-center">
               <svg viewBox="0 0 20 20" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
