@@ -9,7 +9,7 @@ export function StaysGrid() {
   return (
     <section className="section-y">
       <div className="container-x">
-        <SectionHeader eyebrow="Stays" title="Lodges, boutique hotels, heritage farmhouses." intro="Placeholder names until partner agreements are signed. Every price is per person per night, all-in." link={{ href: "/destinations", label: "Stays by valley" }} />
+        <SectionHeader eyebrow="Stays" title="Lodges, boutique hotels, heritage farmhouses." intro="We confirm each property by name in your proposal. Every price is per person per night, all-in." link={{ href: "/destinations", label: "Stays by valley" }} />
         <Stagger className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {picks.map((s) => (
             <StaggerItem key={s.slug}>

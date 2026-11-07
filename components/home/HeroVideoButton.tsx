@@ -36,9 +36,8 @@ export function HeroVideoButton() {
                 <Image src={poster.src} alt={poster.alt} fill sizes="100vw" className="object-cover opacity-50" />
                 <div className="absolute inset-0 grid place-items-center text-center">
                   <div>
-                    <p className="eyebrow text-saffron">Video placeholder</p>
+                    <p className="eyebrow text-saffron">Bhutan</p>
                     <p className="mt-3 font-display text-[1.75rem]">Dawn over a dzong, prayer flags on a mountain pass.</p>
-                    <p className="mt-2 text-[0.8125rem] text-white/70">Set media.heroFull in config/site.ts to play the full film here.</p>
                   </div>
                 </div>
               </div>

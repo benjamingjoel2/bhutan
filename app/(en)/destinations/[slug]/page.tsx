@@ -138,7 +138,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
       {stays.length > 0 && (
         <section id="stays" className="section-y scroll-mt-32">
           <div className="container-x">
-            <SectionHeader eyebrow="Stays" title={`Where to sleep in ${d.name}.`} intro="Placeholder names until partner agreements are signed. Prices per person per night, SDF included." size="md" />
+            <SectionHeader eyebrow="Stays" title={`Where to sleep in ${d.name}.`} intro="We confirm each property by name in your proposal. Prices per person per night, SDF included." size="md" />
             <Stagger className="mt-10 grid gap-8 md:grid-cols-3">
               {stays.map((s) => <StaggerItem key={s!.slug}><StayCard s={s!} /></StaggerItem>)}
             </Stagger>

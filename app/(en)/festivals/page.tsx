@@ -16,7 +16,7 @@ export default function FestivalsPage() {
     <main id="main" data-hero="true">
       <PageHero image={images.monasteryPeaks} eyebrow="Festivals" title="When the courtyards fill with masked dancers." intro="Tshechus honour Guru Rinpoche and are held in dzongs and temples across the kingdom. They follow the lunar calendar, so the dates below are typical months. We confirm exact dates each year as they are published." />
       <div className="border-y border-line bg-saffron/15">
-        <p className="container-x py-4 text-[0.875rem] text-ink">Dates are placeholders and shift every year with the lunar calendar. Verify against https://www.bhutan.travel before booking flights.</p>
+        <p className="container-x py-4 text-[0.875rem] text-ink">Dates shift every year with the lunar calendar. Check https://www.bhutan.travel before booking flights.</p>
       </div>
       <section className="section-y-sm">
         <div className="container-x">

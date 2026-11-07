@@ -16,7 +16,6 @@ export function OffersBand() {
               <Link href={`/offers#${o.slug}`} className="group block">
                 <div className="relative aspect-[3/2] img-zoom bg-pine-deep">
                   <Image src={o.image.src} alt={o.image.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
-                  <span className="absolute left-4 top-4 bg-saffron px-3 py-1 text-[0.625rem] uppercase tracking-[0.18em] text-ink">Placeholder offer</span>
                 </div>
                 <p className="eyebrow mt-5 mb-1 text-saffron-light">{o.kind === "stay-longer" ? "Stay longer" : "Seasonal"}</p>
                 <h3 className="display-sm text-white">{o.name}</h3>
