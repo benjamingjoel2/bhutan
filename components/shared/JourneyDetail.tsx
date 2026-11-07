@@ -33,7 +33,7 @@ export function JourneyDetail({ j, trek }: { j: Journey | Trek; trek?: Trek }) {
     { id: "itinerary", label: "Day by day" },
     { id: "inclusions", label: "Inclusions" },
     { id: "pricing", label: "Pricing" },
-    { id: "map", label: "Map" },
+    { id: "route", label: "Route" },
     ...(stays.length ? [{ id: "stays", label: "Stays" }] : []),
   ];
 
@@ -141,18 +141,14 @@ export function JourneyDetail({ j, trek }: { j: Journey | Trek; trek?: Trek }) {
         </div>
       </section>
 
-      <section id="map" className="section-y-sm scroll-mt-32 bg-stone">
+      <section id="route" className="section-y-sm scroll-mt-32 bg-stone">
         <div className="container-x">
           <SectionHeader eyebrow="Route" title="Where the road goes." size="md" />
-          <div className="relative mt-8 aspect-[16/7] overflow-hidden border border-line-strong bg-whitewash">
-            <div className="absolute inset-0 grid place-items-center text-center">
-              <div>
-                <p className="eyebrow text-ink-mute">Map placeholder</p>
-                <p className="mt-3 font-display text-[1.5rem]">{j.destinations.map((s) => getDestination(s)?.name ?? s).join(" → ")}</p>
-                <p className="mt-2 text-[0.8125rem] text-ink-mute">An interactive route map (Mapbox / Google Maps) slots in here.</p>
-              </div>
-            </div>
-          </div>
+          <ol className="mt-8 flex flex-wrap gap-x-3 gap-y-2 font-display text-[1.5rem]">
+            {j.destinations.map((s, i) => (
+              <li key={s}>{i > 0 && <span aria-hidden className="mr-3 text-ink-mute">→</span>}{getDestination(s)?.name ?? s}</li>
+            ))}
+          </ol>
         </div>
       </section>
 
