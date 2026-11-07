@@ -131,6 +131,8 @@ h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 400; 
   cursor: pointer; white-space: nowrap;
 }
 .btn:focus-visible { outline: 2px solid var(--saffron); outline-offset: 3px; }
+/* Long translated labels (e.g. FR/DE) wrap on phones instead of pushing the page sideways. */
+@media (max-width: 30rem) { .btn { max-width: 100%; white-space: normal; text-align: center; line-height: 1.3; } }
 .btn-primary { background: var(--maroon); border-color: var(--maroon); color: #fff; }
 .btn-primary:hover { background: var(--maroon-deep); border-color: var(--maroon-deep); }
 .btn-outline { color: var(--ink); border-color: var(--line-strong); background: transparent; }

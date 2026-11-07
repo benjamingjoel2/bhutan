@@ -20,8 +20,8 @@ export default function FestivalsPage() {
       </div>
       <section className="section-y-sm">
         <div className="container-x">
-          {/* Calendar table */}
-          <div className="overflow-x-auto">
+          {/* Calendar table. "relative" keeps the sr-only header label inside the scroll box, so the page never scrolls sideways. */}
+          <div className="relative overflow-x-auto">
             <table className="w-full min-w-[640px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-line-strong text-[0.6875rem] uppercase tracking-[0.18em] text-ink-mute">
