@@ -104,7 +104,7 @@ export function JourneyDetail({ j, trek }: { j: Journey | Trek; trek?: Trek }) {
                   body: (
                     <div>
                       <p>{d.body}</p>
-                      {stay && <p className="mt-3 text-[0.875rem] text-ink-mute">Stay: <Link href={`/stays/${stay.slug}`} className="underline underline-offset-4">{stay.name}</Link> <span className="text-maroon">· placeholder name</span></p>}
+                      {stay && <p className="mt-3 text-[0.875rem] text-ink-mute">Stay: <Link href={`/stays/${stay.slug}`} className="underline underline-offset-4">{stay.name}</Link></p>}
                     </div>
                   ),
                 };
@@ -155,7 +155,7 @@ export function JourneyDetail({ j, trek }: { j: Journey | Trek; trek?: Trek }) {
       {stays.length > 0 && (
         <section id="stays" className="section-y scroll-mt-32">
           <div className="container-x">
-            <SectionHeader eyebrow="Stays on this journey" title="Where you will sleep." intro="Placeholder names until partner agreements are signed." size="md" />
+            <SectionHeader eyebrow="Stays on this journey" title="Where you will sleep." intro="We confirm each property by name in your proposal." size="md" />
             <Stagger className="mt-10 grid gap-8 md:grid-cols-3">
               {stays.slice(0, 6).map((s) => <StaggerItem key={s!.slug}><StayCard s={s!} /></StaggerItem>)}
             </Stagger>

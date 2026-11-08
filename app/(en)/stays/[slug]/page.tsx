@@ -31,7 +31,7 @@ export default async function StayPage({ params }: { params: Promise<{ slug: str
       <PageHero image={s.images[0]} eyebrow={`${s.type} · ${s.valley}`} title={s.name} intro={s.tagline} size="lg">
         <div className="mt-4"><Breadcrumb light items={[{ label: "Destinations", href: "/destinations" }, ...(dest ? [{ label: dest.name, href: `/destinations/${dest.slug}` }] : []), { label: s.name }]} /></div>
       </PageHero>
-      <div className="bg-saffron/20 py-3 text-center text-[0.8125rem] text-ink">Placeholder stay. The name and details stand in for a partner property to be confirmed.</div>
+      <div className="bg-saffron/20 py-3 text-center text-[0.8125rem] text-ink">We name the property in your proposal. The details describe the kind of place we book in this valley.</div>
       <section className="section-y">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <Reveal className="space-y-6 lg:col-span-7">

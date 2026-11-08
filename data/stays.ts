@@ -1,6 +1,7 @@
 /**
- * Stays — PLACEHOLDER properties. No real hotel or lodge names until partner
- * agreements exist. Every entry is `placeholder: true`; names are descriptive generics.
+ * Stays: described by the kind of place and its valley, never by an invented
+ * hotel name. Properties are named in each guest's proposal (`placeholder: true`
+ * marks entries not yet tied to a signed partner).
  * priceFromUSD = per person per night, all-in, Sustainable Development Fee included.
  */
 import type { Stay } from "./types";
@@ -9,7 +10,7 @@ import { img } from "./images";
 export const stays: Stay[] = [
   {
     slug: "paro-valley-lodge",
-    name: "Paro Valley Lodge",
+    name: "A lodge in the Paro valley",
     type: "Lodge",
     valley: "Paro",
     destination: "paro",
@@ -32,7 +33,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "thimphu-boutique-house",
-    name: "Thimphu Boutique House",
+    name: "A boutique hotel in Thimphu",
     type: "Boutique hotel",
     valley: "Thimphu",
     destination: "thimphu",
@@ -54,7 +55,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "punakha-river-lodge",
-    name: "Punakha River Lodge",
+    name: "A river lodge in Punakha",
     type: "Lodge",
     valley: "Punakha",
     destination: "punakha",
@@ -77,7 +78,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "gangtey-farmhouse",
-    name: "Gangtey Farmhouse",
+    name: "A farmhouse in Gangtey",
     type: "Heritage farmhouse",
     valley: "Phobjikha",
     destination: "phobjikha",
@@ -99,7 +100,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "bumthang-heritage-farmhouse",
-    name: "Bumthang Heritage Farmhouse",
+    name: "A heritage farmhouse in Bumthang",
     type: "Heritage farmhouse",
     valley: "Bumthang",
     destination: "bumthang",
@@ -121,7 +122,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "haa-valley-retreat",
-    name: "Haa Valley Retreat",
+    name: "A retreat in the Haa valley",
     type: "Wellness retreat",
     valley: "Haa",
     destination: "haa",
@@ -144,7 +145,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "trongsa-hillside-hotel",
-    name: "Trongsa Hillside Hotel",
+    name: "A hillside hotel in Trongsa",
     type: "Boutique hotel",
     valley: "Trongsa",
     destination: "trongsa",
@@ -166,7 +167,7 @@ export const stays: Stay[] = [
   },
   {
     slug: "phobjikha-wellness-lodge",
-    name: "Phobjikha Wellness Lodge",
+    name: "A wellness lodge in Phobjikha",
     type: "Wellness retreat",
     valley: "Phobjikha",
     destination: "phobjikha",

@@ -43,7 +43,7 @@ export function FestivalCarousel() {
           ))}
         </div>
         <div className="container-x mt-6 flex items-center justify-between">
-          <p className="text-[0.75rem] text-ink-mute">Dates are placeholders to verify yearly against the official calendar.</p>
+          <p className="text-[0.75rem] text-ink-mute">Festival dates follow the lunar calendar; we confirm them every year against the official calendar.</p>
           <div className="hidden gap-2 md:flex">
             <button onClick={() => scrollBy(-1)} aria-label="Previous" className="grid h-10 w-10 place-items-center rounded-full border border-line-strong transition-colors hover:bg-ink hover:text-whitewash">←</button>
             <button onClick={() => scrollBy(1)} aria-label="Next" className="grid h-10 w-10 place-items-center rounded-full border border-line-strong transition-colors hover:bg-ink hover:text-whitewash">→</button>
